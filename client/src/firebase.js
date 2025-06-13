@@ -3,12 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, getFirestore } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB4ElucL_-S2GOt705xj6aiuZAGuC92FTw",
-  authDomain: "job-com-6d8ca.firebaseapp.com",
-  projectId: "job-com-6d8ca",
-  storageBucket: "job-com-6d8ca.firebasestorage.app",
-  messagingSenderId: "887421607109",
-  appId: "1:887421607109:web:c22c4985db624fef57e4ac"
+  // need to fill
 };
 
 // Initialize Firebase app
