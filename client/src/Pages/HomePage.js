@@ -21,7 +21,7 @@ function App() {
   const checkForAccountBeforeNavigating = (path) =>{
     //check for account here
 
-    if (path == "/login"){ 
+    if (path === "/login"){ 
       navigate(path);
     }
     else {
@@ -57,7 +57,7 @@ function App() {
                 key={page.label}
                 sx={{ my: 2, color: 'white', display: 'block', mx: 3 }}
                 onClick={() => checkForAccountBeforeNavigating(page.path)}
-              > {/* this is like a for loop, for page in pages, page is gonna be the strings in the array. note that the actual text of the button is right under this line, whereas the key attribute of the button is used to uniquely identify the button */}
+              > {/* this is like a for loop, for page in pages, page.label is gonna be the strings in the array. note that the actual text of the button is right under this line, whereas the key attribute of the button is used to uniquely identify the button */}
                 {page.label}
               </Button>
             ))}
