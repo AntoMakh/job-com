@@ -8,3 +8,5 @@
 1- Any time you want to add an element, check out the material ui page and choose what component you want to add.
 
 2- Make sure to run npm install to avoid errors, in case the other devs installed any libraries
+
+3- Check for an account before allowing posting or accepting a job AND in the signin page
