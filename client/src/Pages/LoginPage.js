@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -6,10 +6,23 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 
 function LoginContainer() {
+  const [formData, setFormData] = useState(
+    //basically we created the variable formdata, and we use setformdata to change it. its a good react practice
+    {
+      email: "", //default values..
+      password: "",
+    }
+  );
+  const handleChange = (e) => {
+    setFormData({
+      //here we save the form data when one of the input fields are changed.
+      ...formData,
+      [e.target.name]: e.target.value, //e.target.name is the name attribute on the html object (example: firstName), e.target.value is the actual value of said object.
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    //checking username and pass here
+    console.log("Check this data in server:", formData);
   };
   return (
     //i hate the formatting too ngl
@@ -62,18 +75,34 @@ function LoginContainer() {
         >
           <TextField
             label="Email"
+            name="email"
             variant="outlined"
             type="email"
             fullWidth
             size="small"
             sx={{ mb: 2, mt: 2 }}
+            value={formData.email}
+            onChange={handleChange}
+            error={!formData.email.includes("@")}
+            helperText={
+              !formData.email.includes("@") ? "Enter a valid email" : ""
+            }
           />
           <TextField
             label="Password"
+            name="password"
             variant="outlined"
             type="password"
             fullWidth
             size="small"
+            value={formData.password}
+            onChange={handleChange}
+            error={formData.password.length < 8}
+            helperText={
+              formData.password.length < 8
+                ? "Password must be at least 8 characters"
+                : ""
+            }
           />
           <Box sx={{ flexGrow: 0.1 }} />{" "}
           {/* this is a visual spacer/seperator for the button to appear lower */}
@@ -96,7 +125,7 @@ function LoginContainer() {
             </Button>
           </Box>
         </Box>
-        <Typography 
+        <Typography
           variant="body2"
           sx={{
             mt: 2,
@@ -105,7 +134,7 @@ function LoginContainer() {
           }}
         >
           Don't have an account?{" "}
-          <Link href="/signup" underline="hover" sx={{ fontWeight: "bold" }}> 
+          <Link href="/signup" underline="hover" sx={{ fontWeight: "bold" }}>
             Sign up
           </Link>
         </Typography>
