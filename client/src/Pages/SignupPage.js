@@ -5,10 +5,11 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Auth } from '../firebase'; //import the configured Firebase auth
+import { Auth } from "../firebase"; //import the configured Firebase auth
 
 function SignupContainer() {
   const auth = Auth;
+
   const [formData, setFormData] = useState(
     //basically we created the variable formdata, and we use setformdata to change it. its a good react practice
     {
@@ -18,6 +19,7 @@ function SignupContainer() {
       password: "",
     }
   );
+
   const handleChange = (e) => {
     setFormData({
       //here we save the form data when one of the input fields are changed.
@@ -25,6 +27,7 @@ function SignupContainer() {
       [e.target.name]: e.target.value, //e.target.name is the name attribute on the html object (example: firstName), e.target.value is the actual value of said object.
     });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Save this data into Server:", formData);
@@ -39,7 +42,6 @@ function SignupContainer() {
         console.error("Signup error:", error.code, error.message);
         // TODO: Display error message to user
       });
-      
   };
 
   return (
