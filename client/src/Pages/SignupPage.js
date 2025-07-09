@@ -4,8 +4,11 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Auth } from '../firebase'; //import the configured Firebase auth
 
 function SignupContainer() {
+  const auth = Auth;
   const [formData, setFormData] = useState(
     //basically we created the variable formdata, and we use setformdata to change it. its a good react practice
     {
@@ -25,6 +28,18 @@ function SignupContainer() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Save this data into Server:", formData);
+
+    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User signed up successfully:", user);
+        // TODO: Redirect or show success message
+      })
+      .catch((error) => {
+        console.error("Signup error:", error.code, error.message);
+        // TODO: Display error message to user
+      });
+      
   };
 
   return (
