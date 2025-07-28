@@ -36,11 +36,11 @@ function SignupContainer() {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("User signed up successfully:", user);
-        // TODO: Redirect or show success message
+        // TODO: redirect or show success message
       })
       .catch((error) => {
         console.error("Signup error:", error.code, error.message);
-        // TODO: Display error message to user
+        // TODO: display error message to user
       });
   };
 

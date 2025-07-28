@@ -31,7 +31,7 @@ function LoginContainer() {
     console.log("Check this data in server:", formData);
 
     signInWithEmailAndPassword(auth, formData.email, formData.password)
-      .then((userCredential) => {
+      .then((userCredential) => { //this is like a try catch statement. this line returns userCredential if signin function is succesful
         // Signed in
         const user = userCredential.user;
         console.log("Logged in user:", user);

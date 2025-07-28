@@ -1,13 +1,12 @@
 import React from "react";
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box'; // Box is a div component
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography'; // Typography is a fancy Text component
-import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom'; //this is the router thats gonna let us go from page to page
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box"; // Box is a div component
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography"; // Typography is a fancy Text component
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom"; //this is the router thats gonna let us go from page to page
 
 // for every ui thing youre gonna use, make sure to import it beforehand
-
 
 const pages = [
   { label: "Browse jobs", path: "/" }, //TBD
@@ -18,53 +17,84 @@ const pages = [
 function App() {
   const navigate = useNavigate();
 
-  const checkForAccountBeforeNavigating = (path) =>{
+  const checkForAccountBeforeNavigating = (path) => {
     //check for account here
 
-    if (path === "/login"){ 
+    if (path === "/login") {
       navigate(path);
-    }
-    else {
+    } else {
       alert("Log in first!");
     }
     //this logic is temporarily used instead of checking for an account, to display the alert if the user presses any button other than the account button
-  } 
+  };
   return (
-    <AppBar position="static"> {/* the top bar thing, stays in the same spot on the screen even when scrolling */}
-      <Box sx={{ml: 5}}> {/* the sx attribute is used to write css, so sx={{ css stuff }}. ml means margin left, pd means padding down, etc pls learn diff between margin and padding */}
-        <Toolbar disableGutters>  
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#"
-            sx={{
-              mr: 10,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            JOB-COM
-          </Typography>
+    <Box> {/*this is the root component */}
+      <AppBar position="sticky" sx={{borderRadius:3}}>  
+        {/* the top bar thing, stays in the same spot on the screen even when scrolling */}
+        <Box sx={{ ml: 5}}>
+          {/* the sx attribute is used to write css, so sx={{ css stuff }}. ml means margin left, pd means padding down, etc pls learn diff between margin and padding */}
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#"
+              sx={{
+                mr: 10,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+              
+            >
+              JOB-COM
+            </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => ( 
-              <Button
-                key={page.label}
-                sx={{ my: 2, color: 'white', display: 'block', mx: 3 }}
-                onClick={() => checkForAccountBeforeNavigating(page.path)}
-              > {/* this is like a for loop, for page in pages, page.label is gonna be the strings in the array. note that the actual text of the button is right under this line, whereas the key attribute of the button is used to uniquely identify the button */}
-                {page.label}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page) => (
+                <Button
+                  key={page.label}
+                  sx={{ my: 2, color: "white", display: "block", mx: 3 }}
+                  onClick={() => checkForAccountBeforeNavigating(page.path)}
+                >
+                  {/* this is like a for loop, for page in pages, page.label is gonna be the strings in the array. note that the actual text of the button is right under this line, whereas the key attribute of the button is used to uniquely identify the button */}
+                  {page.label}
+                </Button>
+              ))}
+            </Box>
+          </Toolbar>
+        </Box>
+      </AppBar>
+      <Box //posts area
+        sx={{
+          backgroundColor: "#f4f6f8",
+          maxWidth: 800,
+          margin: "0 auto",
+          minHeight: "100vh", // makes it fill the screen height
+          padding: 4, // space inside the box
+        }}
+      > 
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Posts Feed
+        </Typography>
+
+        {/* post cards will be rendered here */}
+        <Box
+          sx={{
+            border: "2px dashed #ccc",
+            padding: 4,
+            borderRadius: 3,
+            textAlign: "center",
+            color: "#888",
+          }}
+        >
+          This is where posts will appear.
+        </Box>
       </Box>
-    </AppBar>
+    </Box>
   );
 }
 
